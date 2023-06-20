@@ -1,0 +1,99 @@
+<html>
+<head>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body onload="init()">
+    <script>
+      // 显示当前时间
+      function init() {
+            var data = {
+                time: new Date(),
+                table: [
+                    { name: "David", age: 20 },
+                    { name: "Helen", age: 19},
+                    { name: "Lucy", age: 19 }
+                ]
+            };
+            document.getElementById("time").innerHTML = data.time;
+            setInterval(() => {
+                data.time = new Date();
+                document.getElementById("time").innerHTML = data.time;
+            }, 1000);
+            var table = document.getElementById("table");
+            for (let i = 0; i < data.table.length; i++) {
+                let row = table.insertRow(-1);
+                let cell1 = row.insertCell(0);
+                let cell2 = row.insertCell(1);
+                cell1.innerHTML = data.table[i].name;
+                cell2.innerHTML = data.table[i].age;
+            }
+            var button = document.createElement("button");
+            button.type = "button";
+            button.innerText = "点击显示";
+            button.onclick = function() {
+                var img = document.createElement("img");
+                img.src = "jafei.jpg";
+                document.getElementById("container").appendChild(img);
+            };
+            document.body.appendChild(button);
+        }
+    // 提交按钮点击事件
+    function submitClicked() {
+      alert("提交按钮被点击");
+    }
+ 
+    // 元素点击事件
+   function toggleElement(){
+    $("#target-element").toggle();
+   }
+    // 鼠标移动事件
+    document.addEventListener('mousemove',function(event){
+                var x=event.clientX;
+                var y=event.clientY;
+                document.getElementById('coordinates').textContent=(x+","+y);
+            });
+ 
+    // 添加元素
+    function addElement() {
+      var newElement = $("<p>New element</p >");
+      $("body").append(newElement);
+    }
+ 
+    // 删除元素
+    function removeElement() {
+      $("p").last().remove();
+    }
+    </script>
+  <h1>动态初始化示例</h1>
+  <p id="time"></p >
+  <table id="table">
+  <button type="button" onclick="alert('提交')">提交</button>
+    <div id="container"></div>
+    <tr>
+      <th>Name</th>
+      <th>Age</th>
+    </tr>
+  </table>
+  <div id="target-element" onclick="toggleElement()">点击隐藏</div>
+  <style>
+        .hide {
+            display: none;
+        }
+    #tracker{
+        position:fixed;
+        top:0;
+        left:0;
+        background-color: #21b991;
+        padding:10px;
+    }
+</style>
+<div id="tracker">
+    Mouse:<span id="coordinates">
+    </span>
+</div>
+  <button onclick="addElement()">添加元素</button>
+  <button onclick="removeElement()">删除元素</button>
+</body>
+</html>
+ 
+ 
